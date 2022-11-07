@@ -1,0 +1,11 @@
+body{
+    background: black;
+}
+#menu{
+	display: grid;
+	grid-template-rows:25vh 20vh repeat(3,10vh) 25vh;
+	background: url("../Images/miami.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+}

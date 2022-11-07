@@ -50,12 +50,19 @@ body{
 }
 .logo {
     /* Запустите анимацию встряхивания и сделайте так, чтобы анимация длилась 0,5 секунды */
-    animation: shake 0.5s;
+    animation: shake 0.1s;
   
     /* Когда анимация будет закончена, начните снова */
     animation-iteration-count: infinite;
   }
   
+  .logo:hover {
+    /* Запустите анимацию встряхивания и сделайте так, чтобы анимация длилась 0,5 секунды */
+    animation: shake 0.1s;
+  
+    /* Когда анимация будет закончена, начните снова */
+    animation-iteration-count: infinite;
+  }
   @keyframes shake {
     0% { transform: translate(1px, 1px) rotate(0deg); }
     10% { transform: translate(-1px, -2px) rotate(-1deg); }

@@ -9,3 +9,25 @@ body{
 	background-size: cover;
 	position: relative;
 }
+#menu .logo{
+    width: 600px;
+    height: 600px;
+    margin: auto;
+}
+.name{
+    width: 400px;
+    height: 50px;
+    margin-top: auto;
+    margin-left: auto;
+}
+.start_game{
+    width: 400px;
+    height: 50px;
+    margin-top: auto;
+    margin-left: auto;
+}
+.settings{
+    width: 400px;
+    height: 50px;
+    margin-left: auto;
+}

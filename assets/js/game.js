@@ -15,7 +15,7 @@ let game_mode=1;
 
 
 let player_image=new Image();
-player_image.src="assets/images/Abrey(sprite).png";
+player_image.src="./assets/images/Abrey(sprite)/Abrey(normal).png";
 
 let sprite_city= new Image();
 sprite_city.src="Assets/Images/city.png";
@@ -30,11 +30,12 @@ let cell={
 let player={
 w:cell.w*3,
 h:cell.h*3,
-x:width_screen/2,
-y:height_screen/2,
+x:width_screen,
+y:height_screen,
 speed:2,
 image_h:900/5,
-image_w:900/5
+image_w:900/5,
+angle:180
 }
 
 const count_cell_width=Math.ceil(width_screen/cell.w);
@@ -86,14 +87,14 @@ canvas.addEventListener('mouseup',function(e){
 
 function Game(){
     context.clearRect(0,0,width_screen,height_screen);
-    for(let i=0;i<array_map.length;i++)
-    {
-    context.strokeRect(
-        array_map[i].x,
-        array_map[i].y, 
-        cell.w,
-        cell.h);
-    }
+ for(let i=0;i<array_map.length;i++)
+ {
+ context.strokeRect(
+     array_map[i].x,
+     array_map[i].y, 
+     cell.w,
+     cell.h);
+ }
     for(let i=0; i<city.length; i++){
         context.drawImage(
             
@@ -108,18 +109,30 @@ function Game(){
             city[i].h
         )
     }
-context.drawImage(player_image,
-    0,
-    0,
-    player.image_w,
-    player.image_h,
-    player.x,
-    player.y,
-    player.w,
-    player.h
-    );
+drawRotatedImage(player_image,player.x,player.y,player.angle);
     document.addEventListener('keydown',movePlayer);
     requestAnimationFrame(Game);
+}
+var TO_RADIANS = Math.PI/180; 
+function drawRotatedImage(image, x, y, angle) { 
+ 
+	// save the current co-ordinate system 
+	// before we screw with it
+	context.save(); 
+ 
+	// move to the middle of where we want to draw our image
+	context.translate(x, y);
+ 
+	// rotate around that point, converting our 
+	// angle from degrees to radians 
+	context.rotate(angle * TO_RADIANS);
+ 
+	// draw it up and to the left by half the width
+	// and height of the image 
+	context.drawImage(image, -(image.width/2), -(image.height/2));
+ 
+	// and restore the co-ords to how they were when we began
+	context.restore(); 
 }
 function movePlayer(pressKey)
 {
@@ -129,21 +142,22 @@ switch(pressKey.keyCode)
 {
     case 87:
         player.y-=player.speed;
-        
+        player.angle = 180;
         break;
     case 65:
         player.x-=player.speed;
+        player.angle = 90;
          index_intersection=city.filter(item=>item.x<player.x+player.w && item.x+item.w>player.x && item.y<player.y+player.h&& item.y+item.h>player.y);
         console.log(index_intersection);
-       
+        
         break;
     case 83:
         player.y+=player.speed;
-       
+        player.angle = 360;
         break;
     case 68:
         player.x+=player.speed;
-      
+        player.angle = 270;
         break;
     case 73:
         let builds_window= document.getElementsByClassName("builds")[0];

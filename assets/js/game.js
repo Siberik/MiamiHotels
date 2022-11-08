@@ -147,7 +147,7 @@ switch(pressKey.keyCode)
     case 65:
         player.x-=player.speed;
         player.angle = 90;
-         index_intersection=city.filter(item=>item.x<player.x+player.w && item.x+item.w>player.x && item.y<player.y+player.h&& item.y+item.h>player.y);
+        index_intersection=city.filter(item=>item.x<player.x+player.w && item.x+item.w>player.x && item.y<player.y+player.h&& item.y+item.h>player.y);
         console.log(index_intersection);
         
         break;

@@ -30,8 +30,8 @@ let cell={
 let player={
 w:cell.w*3,
 h:cell.h*3,
-x:width_screen,
-y:height_screen,
+x:width_screen/2,
+y:height_screen/2,
 speed:2,
 image_h:900/5,
 image_w:900/5,

@@ -12,9 +12,13 @@ let select_image_y;
 //1-режим
 let game_mode=1;
 //Изображения
-let cell_image=new Image();
-cell_image.src="Assets/Images/cell.svg"
 
+
+let player_image=new Image();
+player_image.src="assets/images/Abrey(sprite).png";
+
+let sprite_city= new Image();
+sprite_city.src="Assets/Images/city.png";
 //
 let city=[];
 let cell={
@@ -23,7 +27,15 @@ let cell={
     
 };
 
-
+let player={
+w:cell.w*3,
+h:cell.h*3,
+x:width_screen/2,
+y:height_screen/2,
+speed:2,
+image_h:900/5,
+image_w:900/5
+}
 
 const count_cell_width=Math.ceil(width_screen/cell.w);
 const count_cell_height=Math.ceil(height_screen/cell.h); 
@@ -96,4 +108,69 @@ function Game(){
             city[i].h
         )
     }
+context.drawImage(player_image,
+    0,
+    0,
+    player.image_w,
+    player.image_h,
+    player.x,
+    player.y,
+    player.w,
+    player.h
+    );
+    document.addEventListener('keydown',movePlayer);
+    requestAnimationFrame(Game);
+}
+function movePlayer(pressKey)
+{
+console.log(pressKey.keyCode);
+let index_intersection;
+switch(pressKey.keyCode)
+{
+    case 87:
+        player.y-=player.speed;
+        
+        break;
+    case 65:
+        player.x-=player.speed;
+         index_intersection=city.filter(item=>item.x<player.x+player.w && item.x+item.w>player.x && item.y<player.y+player.h&& item.y+item.h>player.y);
+        console.log(index_intersection);
+       
+        break;
+    case 83:
+        player.y+=player.speed;
+       
+        break;
+    case 68:
+        player.x+=player.speed;
+      
+        break;
+    case 73:
+        let builds_window= document.getElementsByClassName("builds")[0];
+        if(game_mode==2){
+        builds_window.style="display: none";
+        console.log(builds_window);
+        if(builds_window.getAttribute("status")=="active"){
+            builds_window.style="display: none";
+            builds_window.setAttribute("status","noactive");
+        }
+        else{
+            builds_window.style="display:grid";
+            builds_window.setAttribute("status","active");
+        }
+        }
+        
+        break;
+    case 82:
+        if(game_mode==2){
+            game_mode=1;
+            select_image_x="";
+            select_image_y="";
+        }
+        else{
+            game_mode=2;
+        }
+        
+        break;
+}
 }

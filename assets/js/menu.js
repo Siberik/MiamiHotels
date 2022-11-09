@@ -39,15 +39,7 @@ $(document).ready(function() {
 	});
 
 
-<<<<<<< HEAD
 	$('.MusicButton').click(function() {
 		audio.get(0).play();
-=======
-	
-	let audio = $("audio");
-	audio.ready(function(){
-		console.log("музыка работает");
-		
->>>>>>> 3cecb26521bc508694f531f41703cec5f7675417
 	});
 	});

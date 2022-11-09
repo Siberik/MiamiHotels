@@ -9,6 +9,17 @@ body{
 	background-size: cover;
 	position: relative;
 }
+.MusicButton{
+  text-decoration: none; /* убирать подчёркивание у ссылок */
+  user-select: none; /* убирать выделение текста */
+  background: rgb(212,75,56); /* фон кнопки */
+  padding: .7em 1.5em; /* отступ от текста */
+  outline: none; /* убирать контур в Mozilla */
+} 
+.MusicButton:hover { background: rgb(175, 54, 165); } /* при наведении курсора мышки */
+.MusicButton:active { background: rgb(41, 110, 189); } /* при нажатии */
+
+
 #menu .logo{
     width: 600px;
     height: 600px;
@@ -23,7 +34,7 @@ body{
 }
 
 .logo:hover {
-  /* Запустите анимацию встряхивания и сделайте так, чтобы анимация длилась 0,5 секунды */
+
   animation: shake 0.1s;
 
   /* Когда анимация будет закончена, начните снова */

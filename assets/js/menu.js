@@ -37,7 +37,7 @@ block_menu.css("display","none");
 	
 	let audio = $("audio");
 	audio.ready(function(){
-		console.log("jj");
+		console.log("музыка работает");
 		
 	});
 });

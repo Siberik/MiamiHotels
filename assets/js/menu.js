@@ -7,6 +7,7 @@ $(document).ready(function(){
 block_menu.css("display","none");
 	block_game.css("display","block");
 	Game();
+	audio.get(0).play();
 	}
 	else{
 		alert("Побежал кабанчиком имя заполнять!");
@@ -30,5 +31,13 @@ block_menu.css("display","none");
 	 $('.builds ul li img').css('background','none');
 	 $(this).find('img').css('background','red');
 	 
+	});
+
+
+	
+	let audio = $("audio");
+	audio.ready(function(){
+		console.log("jj");
+		
 	});
 });

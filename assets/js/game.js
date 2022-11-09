@@ -15,7 +15,7 @@ let game_mode = 1;
 
 
 let player_image = new Image();
-player_image.src = "./assets/images/Abrey(sprite)/Abrey(normal).png";
+player_image.src = "./assets/images/bucket.png";
 
 let sprite_city = new Image();
 sprite_city.src = "Assets/Images/city.png";

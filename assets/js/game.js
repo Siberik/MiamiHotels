@@ -7,6 +7,8 @@ let type;
 
 canvas.width = width_screen;
 canvas.height = height_screen;
+let game_status = false;
+
 let select_image_x;
 let select_image_y;
 //1-режим
@@ -15,7 +17,17 @@ let game_mode = 1;
 
 
 let player_image = new Image();
-player_image.src = "./assets/images/bucket.png";
+let walk_sprite = {
+    
+    w:256,
+    h:32,
+    count:8,
+    speed:200,
+    select_frame:0,
+    side:"left"
+
+}
+
 
 let sprite_city = new Image();
 sprite_city.src = "Assets/Images/city.png";
@@ -83,8 +95,66 @@ canvas.addEventListener('mouseup', function (e) {
     }
 });
 
-function Game() {
+function animate_hero(){
     context.clearRect(0, 0, width_screen, height_screen);
+    if(walk_sprite.select_frame == walk_sprite.count){
+        walk_sprite.select_frame  = 0;
+    }
+    switch(walk_sprite.side){
+        
+        case "left":
+            walk_sprite.h = 32;
+            walk_sprite.w = 256;
+            player_image.src = "assets/images/main hero/left.png";
+        break;
+        case "right":
+        walk_sprite.h = 32;
+        walk_sprite.w = 256;
+            player_image.src = "assets/images/main hero/right.png";
+        break;
+        case "up":
+            walk_sprite.h = 32; 
+            walk_sprite.w = 256;
+            player_image.src = "assets/images/main hero/up.png";
+        break;
+        case "down":
+            walk_sprite.h = 32;
+            walk_sprite.w = 256;
+            player_image.src = "assets/images/main hero/down.png";
+        break;
+        
+    }
+    if(walk_sprite.side == "left" || walk_sprite.side == "right"){
+        context.drawImage(
+            player_image,
+            (walk_sprite.w/walk_sprite.count)*walk_sprite.select_frame ,
+            walk_sprite.h*0,
+            walk_sprite.w/walk_sprite.count,
+            walk_sprite.h,
+            player.x,
+            player.y,
+            player.w,
+            player.h    
+        );
+    }
+    else{
+        context.drawImage(
+            player_image,
+            (walk_sprite.w/walk_sprite.count)*0 ,
+            walk_sprite.h*walk_sprite.select_frame,
+            walk_sprite.w/walk_sprite.count,
+            walk_sprite.h,
+            player.x,
+            player.y,
+            player.w,
+            player.h    
+        );
+    }
+    walk_sprite.select_frame+=1;
+}
+
+function Game() {
+    //context.clearRect(0, 0, width_screen, height_screen);
     for (let i = 0; i < array_map.length; i++) {
         context.strokeRect(
             array_map[i].x,
@@ -106,31 +176,25 @@ function Game() {
             city[i].h
         )
     }
-    drawRotatedImage(player_image, player.x, player.y, player.angle);
+    if(game_status == false){
+        setInterval(animate_hero,walk_sprite.speed);
+        game_status = true;
+    }
+    // drawRotatedImage(player_image, player.x, player.y, player.angle);
     document.addEventListener('keydown', movePlayer);
     requestAnimationFrame(Game);
 }
-var TO_RADIANS = Math.PI / 180;
-function drawRotatedImage(image, x, y, angle) {
+// var TO_RADIANS = Math.PI / 180;
+// function drawRotatedImage(image, x, y, angle) {
+//     context.save();
+//     context.translate(x, y);
+//     context.rotate(angle * TO_RADIANS);
 
-    // save the current co-ordinate system 
-    // before we screw with it
-    context.save();
-
-    // move to the middle of where we want to draw our image
-    context.translate(x, y);
-
-    // rotate around that point, converting our 
-    // angle from degrees to radians 
-    context.rotate(angle * TO_RADIANS);
-
-    // draw it up and to the left by half the width
-    // and height of the image 
-    context.drawImage(image, -(image.width / 2), -(image.height / 2));
-
-    // and restore the co-ords to how they were when we began
-    context.restore();
-}
+//     animate_hero(-(image.width / 2),-(image.height / 2));
+//     // context.drawImage(image, -(image.width / 2), -(image.height / 2));
+//     // and restore the co-ords to how they were when we began
+//     context.restore();
+// }
 function movePlayer(pressKey) {
     console.log(pressKey.keyCode);
     let index_intersection;
@@ -138,10 +202,11 @@ function movePlayer(pressKey) {
         case 87:
             player.y -= player.speed;
             player.angle = 180;
+            walk_sprite.side = "up";
             break;
         case 65:
             player.x -= player.speed;
-            player.angle = 90;
+            walk_sprite.side = "left";
             index_intersection = city.filter(item => item.x < player.x + player.w && item.x + item.w > player.x && item.y < player.y + player.h && item.y + item.h > player.y);
             console.log(index_intersection);
 
@@ -149,10 +214,11 @@ function movePlayer(pressKey) {
         case 83:
             player.y += player.speed;
             player.angle = 360;
+            walk_sprite.side = "down";
             break;
         case 68:
             player.x += player.speed;
-            player.angle = 270;
+            walk_sprite.side = "right";
             break;
         case 73:
             let builds_window = document.getElementsByClassName("builds")[0];

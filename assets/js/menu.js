@@ -9,11 +9,11 @@ $(document).ready(function() {
 			block_game.css("display", "block");
 			Game();
 			audio.get(0).pause();
-			audio.attr("src","assets/sounds/Hydrogen.mp3");
-			audio.get(0).play();	
-			
-		
-		
+			audio.attr("src", "assets/sounds/Hydrogen.mp3");
+			audio.get(0).play();
+
+
+
 		} else {
 			alert("Побежал кабанчиком имя заполнять!");
 		}
@@ -39,7 +39,18 @@ $(document).ready(function() {
 	});
 
 
+
 	$('.MusicButton').click(function() {
 		audio.get(0).play();
+
 	});
-	});
+	
+
+
+
+$("#MusicSlider").change(function(){
+    let volume = $("#audio-player").val();
+    $("#audio-player").volume = volume ;
+});
+
+});

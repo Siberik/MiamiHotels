@@ -18,13 +18,13 @@ let game_mode = 1;
 
 let player_image = new Image();
 let walk_sprite = {
-    
-    w:256,
-    h:32,
-    count:8,
-    speed:200,
-    select_frame:0,
-    side:"left"
+
+    w: 256,
+    h: 32,
+    count: 8,
+    speed: 200,
+    select_frame: 0,
+    side: "left"
 
 }
 
@@ -95,62 +95,62 @@ canvas.addEventListener('mouseup', function (e) {
     }
 });
 
-function animate_hero(){
+function animate_hero() {
     context.clearRect(0, 0, width_screen, height_screen);
-    if(walk_sprite.select_frame == walk_sprite.count){
-        walk_sprite.select_frame  = 0;
+    if (walk_sprite.select_frame == walk_sprite.count) {
+        walk_sprite.select_frame = 0;
     }
-    switch(walk_sprite.side){
-        
+    switch (walk_sprite.side) {
+
         case "left":
             walk_sprite.h = 32;
             walk_sprite.w = 256;
             player_image.src = "assets/images/main hero/left.png";
-        break;
+            break;
         case "right":
-        walk_sprite.h = 32;
-        walk_sprite.w = 256;
+            walk_sprite.h = 32;
+            walk_sprite.w = 256;
             player_image.src = "assets/images/main hero/right.png";
-        break;
+            break;
         case "up":
-            walk_sprite.h = 32; 
+            walk_sprite.h = 32;
             walk_sprite.w = 256;
             player_image.src = "assets/images/main hero/up.png";
-        break;
+            break;
         case "down":
             walk_sprite.h = 32;
             walk_sprite.w = 256;
             player_image.src = "assets/images/main hero/down.png";
-        break;
-        
+            break;
+
     }
-    if(walk_sprite.side == "left" || walk_sprite.side == "right"){
+    if (walk_sprite.side == "left" || walk_sprite.side == "right") {
         context.drawImage(
             player_image,
-            (walk_sprite.w/walk_sprite.count)*walk_sprite.select_frame ,
-            walk_sprite.h*0,
-            walk_sprite.w/walk_sprite.count,
+            (walk_sprite.w / walk_sprite.count) * walk_sprite.select_frame,
+            walk_sprite.h * 0,
+            walk_sprite.w / walk_sprite.count,
             walk_sprite.h,
             player.x,
             player.y,
             player.w,
-            player.h    
+            player.h
         );
     }
-    else{
+    else {
         context.drawImage(
             player_image,
-            (walk_sprite.w/walk_sprite.count)*0 ,
-            walk_sprite.h*walk_sprite.select_frame,
-            walk_sprite.w/walk_sprite.count,
+            (walk_sprite.w / walk_sprite.count) * 0,
+            walk_sprite.h * walk_sprite.select_frame,
+            walk_sprite.w / walk_sprite.count,
             walk_sprite.h,
             player.x,
             player.y,
             player.w,
-            player.h    
+            player.h
         );
     }
-    walk_sprite.select_frame+=1;
+    walk_sprite.select_frame += 1;
 }
 
 function Game() {
@@ -176,8 +176,8 @@ function Game() {
             city[i].h
         )
     }
-    if(game_status == false){
-        setInterval(animate_hero,walk_sprite.speed);
+    if (game_status == false) {
+        setInterval(animate_hero, walk_sprite.speed);
         game_status = true;
     }
     // drawRotatedImage(player_image, player.x, player.y, player.angle);

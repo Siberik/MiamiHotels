@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="assets/images/icon.png">
     <link rel="stylesheet" href="assets/css/main.css">
-    <script type="text/javascript" src="assets/js/jquery-3.6.1.min.js"></script>
-    <script type="text/javascript" src="assets/js/menu.js"></script>
+    <script type="text/javascript" src="assets/js/jquery-3.6.1.min.js">
+
+    </script><script src="assets/js/jquery-ui-1.12.1/jquery-ui.min.js"></script>
     
+    <script type="text/javascript" src="assets/js/menu.js"></script>
+
     <title>Miami Hotel's</title>
 
 </head>
+
 <body>
-    
-   
-      
+
+
+
     <div id="menu">
         <img src="assets/images/logo MH.png" class="logo" alt="тут лого">
         <div class="btn">
@@ -24,27 +29,28 @@
             <input type="submit" value="Начать игру" class="start_game">
             <input type="submit" value="Настройки" class="settings">
         </div>
-        <audio src="assets/sounds/intomh.mp3" class="IntroAudio"></audio>
-        
+        <audio src="assets/sounds/intomh.mp3" class="IntroAudio" id="audio-player"></audio>
 
 
-	
-		<section class="settings_window">
-			<p class="close">x</p>
-			
-			<h2>Настройки</h2>
-			<section class="Volume">
-				<img src="assets/images/переносная колонка.png" alt="">
-				<input type="range">
+
+
+        <section class="settings_window">
+            <p class="close">x</p>
+
+            <h2>Настройки</h2>
+            <section class="Volume">
+                <img src="assets/images/переносная колонка.png" alt="">
+                <input type="range" id="MusicSlider">
                 <button class="MusicButton">Включить музычку</button>
-			</section>
-		</section>
+            </section>
+        </section>
     </div>
     <div id="game">
 
         <canvas id="game_zone"></canvas>
-        
-		<script type="text/javascript" src="assets/js/game.js"></script> 
+
+        <script type="text/javascript" src="assets/js/game.js"></script>
     </div>
 </body>
+
 </html>

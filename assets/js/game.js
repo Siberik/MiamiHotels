@@ -22,15 +22,13 @@ let walk_sprite = {
     w: 256,
     h: 32,
     count: 8,
-    speed: 200,
+    speed: 150,
     select_frame: 0,
     side: "left"
 
 }
 
 
-let sprite_city = new Image();
-sprite_city.src = "Assets/Images/city.png";
 //
 let city = [];
 let cell = {

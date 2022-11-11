@@ -30,9 +30,10 @@ $(document).ready(function() {
 		settings_window.fadeOut();
 	});
 	$('.builds li').click(function() {
-		select_image_x = $(this).attr("x");
-		select_image_y = $(this).attr("y");
-		type = $(this).attr("type");
+		select_image_h = $(this).attr("h");
+		select_image_w = $(this).attr("w");
+		select_image_type = $(this).attr("type");
+		select_image_name = $(this).attr("name");
 		$('.builds ul li img').css('background', 'none');
 		$(this).find('img').css('background', 'red');
 
@@ -48,9 +49,14 @@ $(document).ready(function() {
 
 
 
-$("#MusicSlider").change(function(){
-	let volume = $(this).val();
-    $("#audio-player").volume = volume ;
-});
+	var audio_player = document.getElementById('audio-player');
+	var range = document.getElementById('MusicSlider');
+	range.onchange = function(){
+	  if (this.value == this.min){
+		audio_player.volume = 0;
+	  } else if(this.value == this.max){
+		audio_player.volume = 1;
+	  }
+	}
 
 });

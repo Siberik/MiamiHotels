@@ -89,6 +89,7 @@ body{
 	align-items: center;
 }
 #game{
+    color: aliceblue;
 	width: 100%;
 	height: 100vh;
 	display: none;
@@ -97,4 +98,20 @@ body{
 width: 100%;
 	height: 100vh;
 	background: rgb(61, 30, 146);
+}
+.builds{
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: black;
+	display: none;
+	grid-template-columns: repeat(2,1fr);
+
+}
+.builds li{
+	list-style-type: none;
+}
+.builds ul li img{
+width: 25%;
+padding: 5px;
 }

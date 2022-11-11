@@ -9,14 +9,24 @@ canvas.width = width_screen;
 canvas.height = height_screen;
 let game_status = false;
 
-let select_image_x;
-let select_image_y;
+let select_image_h;
+let select_image_w;
+let select_image_type;
+let select_image_name;
 //1-режим
 let game_mode = 1;
 //Изображения
 
 
 let player_image = new Image();
+
+let glass_wall = new Image();
+glass_wall.src="assets/images/Textures/Walls/GlassPanelV.png";
+let glass_wall2 = new Image();
+glass_wall2.src="assets/images/Textures/Walls/GlassPanelH.png";
+let glass_floor = new Image();
+glass_floor.src="assets/images/Textures/Floor/GlassFloor.png";
+
 let walk_sprite = {
 
     w: 256,
@@ -47,13 +57,14 @@ let player = {
     image_w: 900 / 5,
     angle: 180
 }
-
+//Сколько клеток вмещается
 const count_cell_width = Math.ceil(width_screen / cell.w);
 const count_cell_height = Math.ceil(height_screen / cell.h);
 
-
+//Карта
 const array_map = [];
-
+const array_texture = [];
+//Прорисовка клеток
 for (let i = 0; i <= count_cell_width; i++) {
     for (let j = 0; j <= count_cell_height; j++) {
         array_map.push({
@@ -63,6 +74,7 @@ for (let i = 0; i <= count_cell_width; i++) {
         });
     }
 }
+
 canvas.addEventListener('mouseup', function (e) {
     const rect = canvas.getBoundingClientRect();
     let x = Math.floor((e.clientX - rect.left) / cell.w) * cell.w;
@@ -71,18 +83,40 @@ canvas.addEventListener('mouseup', function (e) {
     let index_cell = city.filter(item => item.x == x && item.y == y);
     console.log(index_cell);
     if (game_mode == 2) {
-        if (select_image_x != "" && select_image_y != "" && index_cell.length == 0) {
-            city.push({
-                x: x,
-                y: y,
-                w: cell.w,
-                h: cell.h,
-                x_sprite: Number(select_image_x),
-                y_sprite: Number(select_image_y),
-                w_sprite: 16,
-                h_sprite: 16,
-                type: type,
-            });
+        if (select_image_h != "" && select_image_w != "" && index_cell.length == 0) {
+            switch(select_image_name){
+                case "glassV":
+                    city.push({
+                        x:x,
+                        y:y,
+                        img:glass_wall,
+                        h:select_image_h,
+                        w:select_image_w,
+                        type:select_image_type
+                    });
+                break;
+                case "glassH":
+                city.push({
+                    x:x,
+                    y:y,
+                    img:glass_wall2,
+                    h:select_image_h,
+                    w:select_image_w,
+                    type:select_image_type
+                });
+                break;
+                case "glassFl":
+                city.push({
+                    x:x,
+                    y:y,
+                    img:glass_floor,
+                    h:select_image_h,
+                    w:select_image_w,
+                    type:select_image_type
+                });
+                break;
+            }
+            
         }
         else {
             let index = city.findIndex(item => item.x == x && item.y == y);
@@ -152,27 +186,25 @@ function animate_hero() {
 }
 
 function Game() {
+    
     //context.clearRect(0, 0, width_screen, height_screen);
     for (let i = 0; i < array_map.length; i++) {
+        
         context.strokeRect(
             array_map[i].x,
             array_map[i].y,
             cell.w,
             cell.h);
+            
     }
     for (let i = 0; i < city.length; i++) {
         context.drawImage(
-
-            sprite_city,
-            city[i].x_sprite,
-            city[i].y_sprite,
-            city[i].w_sprite,
-            city[i].h_sprite,
+            city[i].img,
             city[i].x,
-            city[i].y,
-            city[i].w,
-            city[i].h
-        )
+             city[i].y,
+             city[i].w,
+             city[i].h
+        );
     }
     if (game_status == false) {
         setInterval(animate_hero, walk_sprite.speed);
@@ -245,5 +277,8 @@ function movePlayer(pressKey) {
             }
 
             break;
+        
+        
+        
     }
 }

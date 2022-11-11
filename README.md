@@ -7,7 +7,6 @@ https://siberik.github.io/MiamiHotels/
 ## Ресурсы, которые использовались в игре:
 
 ### Музыка
-[Contribution guidelines for this project](docs/CONTRIBUTING.md)
 1. futbird — turn to the poultry farm. Очень классный [исполнитель](https://vk.com/futbird).
 ### Полезные ссылки
 https://proglib.io/p/git-for-half-an-hour — подсказка для работы с Git'ом

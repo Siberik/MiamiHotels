@@ -49,7 +49,7 @@ $(document).ready(function() {
 
 
 $("#MusicSlider").change(function(){
-    let volume = $("#audio-player").val();
+	let volume = $(this).val();
     $("#audio-player").volume = volume ;
 });
 

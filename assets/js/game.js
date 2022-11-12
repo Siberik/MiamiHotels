@@ -230,25 +230,30 @@ function movePlayer(pressKey) {
     let index_intersection;
     switch (pressKey.keyCode) {
         case 87:
+            
             player.y -= player.speed;
             player.angle = 180;
             walk_sprite.side = "up";
+            
+            collision();
             break;
         case 65:
             player.x -= player.speed;
             walk_sprite.side = "left";
             index_intersection = city.filter(item => item.x < player.x + player.w && item.x + item.w > player.x && item.y < player.y + player.h && item.y + item.h > player.y);
             console.log(index_intersection);
-
+            collision();
             break;
         case 83:
             player.y += player.speed;
             player.angle = 360;
             walk_sprite.side = "down";
+            collision();
             break;
         case 68:
             player.x += player.speed;
             walk_sprite.side = "right";
+            collision();
             break;
         case 73:
             let builds_window = document.getElementsByClassName("builds")[0];
@@ -279,15 +284,26 @@ function movePlayer(pressKey) {
             break;
         
         
+
         
  
     }
-    function Blocks()
+    function collision()
 {
-    index_intersection=city.filter(item=>item.x<player.x+player.w && 
-        item.x+item.w>player.x && 
-        item.y<player.y+player.h&& 
-        item.y+item.h>player.y&&
+    
+       index_intersection=city.filter(item=>item.x<player.x+player.w && 
+        item.h+item.w>player.x && 
+        item.w<player.y+player.w&& 
+        item.w+item.h>player.y&&
         item.type=="1");
+        if(index_intersection.length>0)
+        {
+            player.x=0;
+            player.y=0;
+        }
+    
+   
+    
+   
 }
 }

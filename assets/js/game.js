@@ -290,22 +290,26 @@ function movePlayer(pressKey) {
     }
     function collision()
 {
+    var cities= city.filter(item => item.x < player.x + player.w && item.x + item.w > player.x && item.y < player.y + player.h && item.y + item.h > player.y&& item.type=="1");
     
-    index_intersection=city.filter(item=>item.x<player.x+player.w && 
-        item.x+item.w>player.x && 
-        item.y<player.y+player.h&& 
-        item.y+item.h>player.y&&
-        item.type=="1");
-        if(index_intersection == 0){
-
-           console.log("Ничего не произошло.")
-        }
-        else{
-            
-            
-            alert("Есть касание!");
-        }
+        if(item=>player.x>0 && player.x<item.w)
+        {
+          console.log("столкновение по оси х");  
+        } 
+        if(item=>player.x<0 && player.x>item.w)
+        {
+          console.log("столкновение по оси х");  
+        } 
+        if(item=>player.y>0 && player.y<item.h)
+        {
+          console.log("столкновение по оси y");  
+        } 
+        if(item=>player.x<0 && player.y>item.h)
+        {
+          console.log("столкновение по оси y");  
+        } 
     
+   
    
     
    

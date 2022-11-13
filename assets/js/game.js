@@ -291,15 +291,19 @@ function movePlayer(pressKey) {
     function collision()
 {
     
-       index_intersection=city.filter(item=>item.x<player.x+player.w && 
-        item.h+item.w>player.x && 
-        item.w<player.y+player.w&& 
-        item.w+item.h>player.y&&
+    index_intersection=city.filter(item=>item.x<player.x+player.w && 
+        item.x+item.w>player.x && 
+        item.y<player.y+player.h&& 
+        item.y+item.h>player.y&&
         item.type=="1");
-        if(index_intersection.length>0)
-        {
-            player.x=0;
-            player.y=0;
+        if(index_intersection == 0){
+
+           console.log("Ничего не произошло.")
+        }
+        else{
+            
+            
+            alert("Есть касание!");
         }
     
    

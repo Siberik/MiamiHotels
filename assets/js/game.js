@@ -291,7 +291,7 @@ function movePlayer(pressKey) {
     function collision()
 {
     function collision(){
-        switch(city[i].type)
+        switch(city.type)
         {
             case 1:
                 

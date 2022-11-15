@@ -21,12 +21,15 @@ let game_mode = 1;
 let player_image = new Image();
 
 let glass_wall = new Image();
-glass_wall.src="assets/images/Textures/Walls/GlassPanelV.png";
+glass_wall.src = "assets/images/Textures/Walls/GlassPanelV.png";
 let glass_wall2 = new Image();
-glass_wall2.src="assets/images/Textures/Walls/GlassPanelH.png";
+glass_wall2.src = "assets/images/Textures/Walls/GlassPanelH.png";
 let glass_floor = new Image();
-glass_floor.src="assets/images/Textures/Floor/GlassFloor.png";
-
+glass_floor.src = "assets/images/Textures/Floor/GlassFloor.png";
+let heavy_wall = new Image();
+heavy_wall.src = "assets/images/Textures/Walls/sprWallHeavyH.png";
+let brick_wall = new Image();
+brick_wall.src = "assets/images/Textures/Walls/sprWallBrickV.png"
 let walk_sprite = {
 
     w: 256,
@@ -84,39 +87,61 @@ canvas.addEventListener('mouseup', function (e) {
     console.log(index_cell);
     if (game_mode == 2) {
         if (select_image_h != "" && select_image_w != "" && index_cell.length == 0) {
-            switch(select_image_name){
+            switch (select_image_name) {
                 case "glassV":
                     city.push({
-                        x:x,
-                        y:y,
-                        img:glass_wall,
-                        h:select_image_h,
-                        w:select_image_w,
-                        type:select_image_type
+                        x: x,
+                        y: y,
+                        img: glass_wall,
+                        h: select_image_h,
+                        w: select_image_w,
+                        type: select_image_type
                     });
-                break;
+                    break;
+                case "HeavyH":
+                    city.push({
+                        x: x,
+                        y: y,
+                        img: heavy_wall,
+                        h: select_image_h,
+                        w: select_image_w,
+                        type: select_image_type
+                    });
+                    break;
+                    case "BrickV":
+                    city.push({
+                        x: x,
+                        y: y,
+                        img: brick_wall,
+                        h: select_image_h,
+                        w: select_image_w,
+                        type: select_image_type
+                    });
+                    break;
                 case "glassH":
-                city.push({
-                    x:x,
-                    y:y,
-                    img:glass_wall2,
-                    h:select_image_h,
-                    w:select_image_w,
-                    type:select_image_type
-                });
-                break;
+                    city.push({
+                        x: x,
+                        y: y,
+                        img: glass_wall2,
+                        h: select_image_h,
+                        w: select_image_w,
+                        type: select_image_type
+                    });
+
+                    break;
+                    break;
                 case "glassFl":
-                city.push({
-                    x:x,
-                    y:y,
-                    img:glass_floor,
-                    h:select_image_h,
-                    w:select_image_w,
-                    type:select_image_type
-                });
-                break;
+                    city.push({
+                        x: x,
+                        y: y,
+                        img: glass_floor,
+                        h: select_image_h,
+                        w: select_image_w,
+                        type: select_image_type
+                    });
+                    break;
             }
-            
+
         }
         else {
             let index = city.findIndex(item => item.x == x && item.y == y);
@@ -186,24 +211,24 @@ function animate_hero() {
 }
 
 function Game() {
-    
+
     //context.clearRect(0, 0, width_screen, height_screen);
     for (let i = 0; i < array_map.length; i++) {
-        
+
         context.strokeRect(
             array_map[i].x,
             array_map[i].y,
             cell.w,
             cell.h);
-            
+
     }
     for (let i = 0; i < city.length; i++) {
         context.drawImage(
             city[i].img,
             city[i].x,
-             city[i].y,
-             city[i].w,
-             city[i].h
+            city[i].y,
+            city[i].w,
+            city[i].h
         );
     }
     if (game_status == false) {
@@ -230,30 +255,35 @@ function movePlayer(pressKey) {
     let index_intersection;
     switch (pressKey.keyCode) {
         case 87:
-            
+        if(collision().length == 0){
             player.y -= player.speed;
             player.angle = 180;
             walk_sprite.side = "up";
             
-            collision();
-            break;
+           
+        }
+        break;
         case 65:
-            player.x -= player.speed;
-            walk_sprite.side = "left";
-            index_intersection = city.filter(item => item.x < player.x + player.w && item.x + item.w > player.x && item.y < player.y + player.h && item.y + item.h > player.y);
-            console.log(index_intersection);
-            collision();
+            if(collision().length == 0){
+                player.x -= player.speed;
+                walk_sprite.side = "left";
+            }
             break;
         case 83:
+        if(collision().length == 0){
             player.y += player.speed;
             player.angle = 360;
             walk_sprite.side = "down";
-            collision();
+        }
+           
             break;
         case 68:
-            player.x += player.speed;
-            walk_sprite.side = "right";
-            collision();
+        if(collision().length == 0){
+          player.x += player.speed;
+            walk_sprite.side = "right";  
+        }
+            
+            
             break;
         case 73:
             let builds_window = document.getElementsByClassName("builds")[0];
@@ -282,45 +312,19 @@ function movePlayer(pressKey) {
             }
 
             break;
-        
-        
 
-        
- 
+
+
+
+
     }
-    function collision()
-{
-    function collision(){
-        switch(city.type)
-        {
-            case 1:
-                
-                    var cities= city.filter(item => item.x < player.x + player.w && item.x + item.w > player.x && item.y < player.y + player.h && item.y + item.h > player.y&& item.type=="1");
-    
-                    if(item=>player.x>0 && player.x<item.w)
-                    {
-                      console.log("столкновение по оси х");  
-                    } 
-                    if(item=>player.x<0 && player.x>item.w)
-                    {
-                      console.log("столкновение по оси х");  
-                    } 
-                    if(item=>player.y>0 && player.y<item.h)
-                    {
-                      console.log("столкновение по оси y");  
-                    } 
-                    if(item=>player.x<0 && player.y>item.h)
-                    {
-                      console.log("столкновение по оси y");  
-                    } 
-                }
-        }
-    
-   
-    
-   
-   
-    
-   
-}
+    function collision() {
+        var cities = city.filter(item => item.x+cell.w > player.x+16 &&
+            item.x < player.x+player.w-16 &&
+            item.y  < player.y+player.h - 16 &&
+            item.y + Number(item.h)> player.y + 16
+            && item.type == "1");  
+        return cities;              
+        
+    }
 }

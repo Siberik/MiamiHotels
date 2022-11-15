@@ -27,7 +27,7 @@ body{
 }
 .logo {
   /* Запустите анимацию встряхивания и сделайте так, чтобы анимация длилась 0,5 секунды */
-  animation: shake 0.1s;
+  animation: shake 0.5s;
 
   /* Когда анимация будет закончена, начните снова */
   animation-iteration-count: infinite;
@@ -73,6 +73,7 @@ body{
     height: 50px;
     margin-top: auto;
     margin-left: auto;
+    background-image: url("../images/частьКнопки1.png");
 }
 .settings{
     width: 400px;

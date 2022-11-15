@@ -1,5 +1,6 @@
 body{
     background: black;
+    
 }
 #menu{
 	display: grid;
@@ -12,12 +13,13 @@ body{
 .MusicButton{
   text-decoration: none; /* убирать подчёркивание у ссылок */
   user-select: none; /* убирать выделение текста */
-  background: rgb(212,75,56); /* фон кнопки */
-  padding: .7em 1.5em; /* отступ от текста */
+  background: rgb(255, 8, 218); /* фон кнопки */
+  width: 110px;
   outline: none; /* убирать контур в Mozilla */
+  font-family: 'USSR STENCIL';
 } 
-.MusicButton:hover { background: rgb(175, 54, 165); } /* при наведении курсора мышки */
-.MusicButton:active { background: rgb(41, 110, 189); } /* при нажатии */
+.MusicButton:hover { background: rgb(9, 91, 255); } /* при наведении курсора мышки */
+.MusicButton:active { background: rgb(197, 221, 16); } /* при нажатии */
 
 
 #menu .logo{
@@ -67,19 +69,64 @@ body{
     height: 50px;
     margin-top: auto;
     margin-left: auto;
+    background: pink;
+    color: blueviolet;
+    font-family: 'Cuprum-Regular';
+    font-size: 18px;
+    border-color:rgb(0, 130, 251);
 }
+
+
 .start_game{
     width: 400px;
     height: 50px;
     margin-top: auto;
     margin-left: auto;
-    background-image: url("../images/частьКнопки1.png");
+    font-family: 'USSR STENCIL';
+    
 }
+#button_start{
+  display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+  width: 386px;
+  height: 60px;
+  background-image: url("../images/частьКнопки1.png");
+  color: #00f9ff;
+}
+#button_start:hover{
+  color: yellow;
+  animation: shake 0.3s;
+  transform: translateY(-0.25em);
+  background-image: url("../images/частьКнопки2.png");
+}
+#button_setting{
+  display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+  width: 386px;
+  height: 60px;
+  color: #00f9ff;
+  background-image: url("../images/частьКнопки1.png");
+}
+#button_setting:hover{
+  color: yellow;
+  animation: shake 0.3s;
+  transform: translateY(-0.25em);
+  background-image: url("../images/частьКнопки2.png");
+}
+
 .settings{
     width: 400px;
     height: 50px;
+    margin-top: 20px;
     margin-left: auto;
-    
+    font-family: 'USSR STENCIL';
+}
+.settings_window{
+  font-family: 'USSR STENCIL';
 }
 .settings_window .Volume{
 	height: 8vh;
@@ -88,6 +135,7 @@ body{
 	display: grid;
 	grid-template-columns: 20% 80%;
 	align-items: center;
+  
 }
 #game{
     color: aliceblue;

@@ -25,8 +25,15 @@
         <div class="btn">
 
             <input type="text" class="name">
-            <input type="submit" value="Начать игру" class="start_game">
-            <input type="submit" value="Настройки" class="settings">
+            <div class="start_game">
+               <div id="button_start"><p>Начать игру</p></div>
+               
+            </div>
+            
+            <div class="settings">
+                <div id="button_setting"><p>Настройки</p></div>
+
+            </div>
         </div>
         <audio src="assets/sounds/AKMV-18 - Hamartia.mp3" class="IntroAudio" id="audio-player"></audio>
 
@@ -39,7 +46,7 @@
             <h2>Настройки</h2>
             <section class="Volume">
                 <img src="assets/images/переносная колонка.png" alt="">
-                <input type="range" id="MusicSlider">
+                <input type="range" id="MusicSlider" min="0" max="100" value="0" step="1" oninput="onchange">
                 <button class="MusicButton">Включить музычку</button>
             </section>
         </section>

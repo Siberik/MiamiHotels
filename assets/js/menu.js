@@ -55,7 +55,7 @@ $(document).ready(function() {
 	  if (this.value == this.min){
 		audio_player.volume = 0;
 	  } else if(this.value == this.max){
-		audio_player.volume = 100;
+		audio_player.volume = 1;
 	  }
 	}
 

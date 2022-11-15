@@ -28,9 +28,12 @@ let glass_floor = new Image();
 glass_floor.src = "assets/images/Textures/Floor/GlassFloor.png";
 let heavy_wall = new Image();
 heavy_wall.src = "assets/images/Textures/Walls/sprWallHeavyH.png";
-let brick_wall = new Image();
-brick_wall.src = "assets/images/Textures/Walls/sprWallBrickV.png"
+let brick_wallh = new Image();
+brick_wallh.src = "assets/images/Textures/Walls/sprWallBrickH.png"
+let brick_wallv = new Image();
+brick_wallv.src = "assets/images/Textures/Walls/sprWallBrickV.png"
 let walk_sprite = {
+    
 
     w: 256,
     h: 32,
@@ -58,8 +61,10 @@ let player = {
     speed: 4,
     image_h: 900 / 5,
     image_w: 900 / 5,
-    angle: 180
+    angle: 180,
+    status:"run"
 }
+
 //Сколько клеток вмещается
 const count_cell_width = Math.ceil(width_screen / cell.w);
 const count_cell_height = Math.ceil(height_screen / cell.h);
@@ -90,6 +95,7 @@ canvas.addEventListener('mouseup', function (e) {
             switch (select_image_name) {
                 case "glassV":
                     city.push({
+                        buildname:"glassV",
                         x: x,
                         y: y,
                         img: glass_wall,
@@ -100,6 +106,7 @@ canvas.addEventListener('mouseup', function (e) {
                     break;
                 case "HeavyH":
                     city.push({
+                        buildname:"HeavyH",
                         x: x,
                         y: y,
                         img: heavy_wall,
@@ -110,9 +117,21 @@ canvas.addEventListener('mouseup', function (e) {
                     break;
                     case "BrickV":
                     city.push({
+                        buildname:"BrickV",
                         x: x,
                         y: y,
-                        img: brick_wall,
+                        img: brick_wallv,
+                        h: select_image_h,
+                        w: select_image_w,
+                        type: select_image_type
+                    });
+                    break;
+                    case "BrickH":
+                    city.push({
+                        buildname:"BrickH",
+                        x: x,
+                        y: y,
+                        img: brick_wallh,
                         h: select_image_h,
                         w: select_image_w,
                         type: select_image_type
@@ -120,6 +139,7 @@ canvas.addEventListener('mouseup', function (e) {
                     break;
                 case "glassH":
                     city.push({
+                        buildname:"glassH",
                         x: x,
                         y: y,
                         img: glass_wall2,
@@ -132,6 +152,7 @@ canvas.addEventListener('mouseup', function (e) {
                     break;
                 case "glassFl":
                     city.push({
+                        buildname:"glassFl",
                         x: x,
                         y: y,
                         img: glass_floor,
@@ -154,6 +175,24 @@ canvas.addEventListener('mouseup', function (e) {
 
 function animate_hero() {
     context.clearRect(0, 0, width_screen, height_screen);
+    for (let i = 0; i < array_map.length; i++) {
+
+        context.strokeRect(
+            array_map[i].x,
+            array_map[i].y,
+            cell.w,
+            cell.h);
+
+    }
+    for (let i = 0; i < city.length; i++) {
+        context.drawImage(
+            city[i].img,
+            city[i].x,
+            city[i].y,
+            city[i].w,
+            city[i].h
+        );
+    }
     if (walk_sprite.select_frame == walk_sprite.count) {
         walk_sprite.select_frame = 0;
     }
@@ -208,33 +247,18 @@ function animate_hero() {
         );
     }
     walk_sprite.select_frame += 1;
+    
 }
 
 function Game() {
-
-    //context.clearRect(0, 0, width_screen, height_screen);
-    for (let i = 0; i < array_map.length; i++) {
-
-        context.strokeRect(
-            array_map[i].x,
-            array_map[i].y,
-            cell.w,
-            cell.h);
-
-    }
-    for (let i = 0; i < city.length; i++) {
-        context.drawImage(
-            city[i].img,
-            city[i].x,
-            city[i].y,
-            city[i].w,
-            city[i].h
-        );
-    }
+   
+    // context.clearRect(0, 0, width_screen, height_screen);
     if (game_status == false) {
         setInterval(animate_hero, walk_sprite.speed);
         game_status = true;
     }
+    
+    
     // drawRotatedImage(player_image, player.x, player.y, player.angle);
     document.addEventListener('keydown', movePlayer);
     requestAnimationFrame(Game);
@@ -255,32 +279,50 @@ function movePlayer(pressKey) {
     let index_intersection;
     switch (pressKey.keyCode) {
         case 87:
-        if(collision().length == 0){
+        walk_sprite.side = "up";
+        if(collision().length == 0 ){
             player.y -= player.speed;
             player.angle = 180;
-            walk_sprite.side = "up";
             
-           
+        }
+        else{
+                
+            player.y += player.speed*2;
         }
         break;
         case 65:
+            walk_sprite.side = "left";
             if(collision().length == 0){
                 player.x -= player.speed;
-                walk_sprite.side = "left";
+                
+            }
+            else{
+                
+                player.x += player.speed*2;
             }
             break;
         case 83:
+        walk_sprite.side = "down";
         if(collision().length == 0){
             player.y += player.speed;
             player.angle = 360;
-            walk_sprite.side = "down";
+           
+        }
+        else{
+                
+            player.y -= player.speed*2;
         }
            
             break;
         case 68:
+        walk_sprite.side = "right";
         if(collision().length == 0){
           player.x += player.speed;
-            walk_sprite.side = "right";  
+              
+        }
+        else{
+                
+            player.x -= player.speed*2;
         }
             
             

@@ -255,30 +255,35 @@ function movePlayer(pressKey) {
     let index_intersection;
     switch (pressKey.keyCode) {
         case 87:
-
+        if(collision().length == 0){
             player.y -= player.speed;
             player.angle = 180;
             walk_sprite.side = "up";
-
-            collision();
-            break;
+            
+           
+        }
+        break;
         case 65:
-            player.x -= player.speed;
-            walk_sprite.side = "left";
-            index_intersection = city.filter(item => item.x < player.x + player.w && item.x + item.w > player.x && item.y < player.y + player.h && item.y + item.h > player.y);
-            console.log(index_intersection);
-            collision();
+            if(collision().length == 0){
+                player.x -= player.speed;
+                walk_sprite.side = "left";
+            }
             break;
         case 83:
+        if(collision().length == 0){
             player.y += player.speed;
             player.angle = 360;
             walk_sprite.side = "down";
-            collision();
+        }
+           
             break;
         case 68:
-            player.x += player.speed;
-            walk_sprite.side = "right";
-            collision();
+        if(collision().length == 0){
+          player.x += player.speed;
+            walk_sprite.side = "right";  
+        }
+            
+            
             break;
         case 73:
             let builds_window = document.getElementsByClassName("builds")[0];
@@ -314,32 +319,12 @@ function movePlayer(pressKey) {
 
     }
     function collision() {
-        function collision() {
-            switch (city.type) {
-                case 1:
-
-                    var cities = city.filter(item => item.x < player.x + player.w && item.x + item.w > player.x && item.y < player.y + player.h && item.y + item.h > player.y && item.type == "1");
-
-                    if (item => player.x > 0 && player.x < item.w) {
-                        console.log("столкновение по оси х");
-                    }
-                    if (item => player.x < 0 && player.x > item.w) {
-                        console.log("столкновение по оси х");
-                    }
-                    if (item => player.y > 0 && player.y < item.h) {
-                        console.log("столкновение по оси y");
-                    }
-                    if (item => player.x < 0 && player.y > item.h) {
-                        console.log("столкновение по оси y");
-                    }
-            }
-        }
-
-
-
-
-
-
-
+        var cities = city.filter(item => item.x+cell.w > player.x+16 &&
+            item.x < player.x+player.w-16 &&
+            item.y  < player.y+player.h - 16 &&
+            item.y + Number(item.h)> player.y + 16
+            && item.type == "1");  
+        return cities;              
+        
     }
 }

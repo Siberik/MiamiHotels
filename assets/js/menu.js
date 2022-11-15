@@ -9,7 +9,7 @@ $(document).ready(function() {
 			block_game.css("display", "block");
 			Game();
 			audio.get(0).pause();
-			audio.attr("src", "assets/sounds/Hydrogen.mp3");
+			audio.attr("src", "assets/sounds/AKMV-18 - Memoria (Mythic Mix).mp3");
 			audio.get(0).play();
 
 

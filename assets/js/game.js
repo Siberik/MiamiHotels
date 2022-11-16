@@ -287,7 +287,7 @@ function movePlayer(pressKey) {
         }
         else{
                 
-            player.y += player.speed*2;
+            player.y += player.speed*3;
         }
         break;
         case 65:
@@ -298,7 +298,7 @@ function movePlayer(pressKey) {
             }
             else{
                 
-                player.x += player.speed*2;
+                player.x += player.speed*3;
             }
             break;
         case 83:
@@ -310,7 +310,7 @@ function movePlayer(pressKey) {
         }
         else{
                 
-            player.y -= player.speed*2;
+            player.y -= player.speed*3;
         }
            
             break;
@@ -322,7 +322,7 @@ function movePlayer(pressKey) {
         }
         else{
                 
-            player.x -= player.speed*2;
+            player.x -= player.speed*3;
         }
             
             

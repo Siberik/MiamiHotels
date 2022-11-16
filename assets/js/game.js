@@ -49,9 +49,225 @@ let walk_sprite = {
 let city = [
     {
         "buildname": "BrickH",
+        "x": 160,
+        "y": 340,
+        "img": brick_wallh,
+        "h": "60",
+        "w": "20",
+        "type": "1"
+    },
+    {
+        "buildname": "BrickH",
+        "x": 160,
+        "y": 300,
+        "img": brick_wallh,
+        "h": "60",
+        "w": "20",
+        "type": "1"
+    },
+    {
+        "buildname": "BrickH",
+        "x": 160,
+        "y": 260,
+        "img": brick_wallh,
+        "h": "60",
+        "w": "20",
+        "type": "1"
+    },
+    {
+        "buildname": "BrickH",
+        "x": 160,
+        "y": 220,
+        "img": brick_wallh,
+        "h": "60",
+        "w": "20",
+        "type": "1"
+    },
+    {
+        "buildname": "BrickV",
+        "x": 200,
+        "y": 180,
+        "img": brick_wallv,
+        "h": "20",
+        "w": "60",
+        "type": "1"
+    },
+    {
+        "buildname": "BrickH",
+        "x": 160,
+        "y": 180,
+        "img": brick_wallh,
+        "h": "60",
+        "w": "20",
+        "type": "1"
+    },
+    {
+        "buildname": "BrickV",
+        "x": 180,
+        "y": 180,
+        "img": brick_wallv,
+        "h": "20",
+        "w": "60",
+        "type": "1"
+    },
+    {
+        "buildname": "BrickV",
+        "x": 280,
+        "y": 180,
+        "img": brick_wallv,
+        "h": "20",
+        "w": "60",
+        "type": "1"
+    },
+    {
+        "buildname": "BrickV",
+        "x": 220,
+        "y": 180,
+        "img": brick_wallv,
+        "h": "20",
+        "w": "60",
+        "type": "1"
+    },
+    {
+        "buildname": "BrickV",
+        "x": 320,
+        "y": 180,
+        "img": brick_wallv,
+        "h": "20",
+        "w": "60",
+        "type": "1"
+    },
+    {
+        "buildname": "BrickV",
+        "x": 340,
+        "y": 180,
+        "img": brick_wallv,
+        "h": "20",
+        "w": "60",
+        "type": "1"
+    },
+    {
+        "buildname": "BrickV",
         "x": 360,
+        "y": 180,
+        "img": brick_wallv,
+        "h": "20",
+        "w": "60",
+        "type": "1"
+    },
+    {
+        "buildname": "BrickV",
+        "x": 380,
+        "y": 180,
+        "img": brick_wallv,
+        "h": "20",
+        "w": "60",
+        "type": "1"
+    },
+    {
+        "buildname": "BrickV",
+        "x": 400,
+        "y": 180,
+        "img": brick_wallv,
+        "h": "20",
+        "w": "60",
+        "type": "1"
+    },
+    {
+        "buildname": "BrickV",
+        "x": 420,
+        "y": 180,
+        "img": brick_wallv,
+        "h": "20",
+        "w": "60",
+        "type": "1"
+    },
+    {
+        "buildname": "BrickH",
+        "x": 480,
+        "y": 180,
+        "img": brick_wallh,
+        "h": "60",
+        "w": "20",
+        "type": "1"
+    },
+    {
+        "buildname": "BrickH",
+        "x": 480,
+        "y": 240,
+        "img": brick_wallh,
+        "h": "60",
+        "w": "20",
+        "type": "1"
+    },
+    {
+        "buildname": "BrickH",
+        "x": 480,
         "y": 280,
         "img": brick_wallh,
+        "h": "60",
+        "w": "20",
+        "type": "1"
+    },
+    {
+        "buildname": "BrickH",
+        "x": 480,
+        "y": 320,
+        "img": brick_wallh,
+        "h": "60",
+        "w": "20",
+        "type": "1"
+    },
+    {
+        "buildname": "BrickH",
+        "x": 480,
+        "y": 340,
+        "img": brick_wallh,
+        "h": "60",
+        "w": "20",
+        "type": "1"
+    },
+    {
+        "buildname": "HeavyH",
+        "x": 220,
+        "y": 380,
+        "img": heavy_wall,
+        "h": "20",
+        "w": "60",
+        "type": "1"
+    },
+    {
+        "buildname": "HeavyH",
+        "x": 160,
+        "y": 380,
+        "img": heavy_wall,
+        "h": "20",
+        "w": "60",
+        "type": "1"
+    },
+    {
+        "buildname": "glassH",
+        "x": 260,
+        "y": 380,
+        "img": glass_wall2,
+        "h": "20",
+        "w": "60",
+        "type": "1"
+    },
+    {
+        "buildname": "glassH",
+        "x": 300,
+        "y": 380,
+        "img": glass_wall2,
+        "h": "20",
+        "w": "60",
+        "type": "1"
+    },
+    {
+        "buildname": "glassV",
+        "x": 340,
+        "y": 340,
+        "img": glass_wall,
         "h": "60",
         "w": "20",
         "type": "1"

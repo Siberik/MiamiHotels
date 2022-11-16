@@ -46,7 +46,17 @@ let walk_sprite = {
 
 
 //
-let city = [];
+let city = [
+    {
+        "buildname": "BrickH",
+        "x": 360,
+        "y": 280,
+        "img": brick_wallh,
+        "h": "60",
+        "w": "20",
+        "type": "1"
+    }
+];
 let cell = {
     w: 20,
     h: 20
